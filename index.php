@@ -1,7 +1,5 @@
 <?php
 
-define('APPLICATION_TIME_START', microtime(true));
-
 /**
  * Rainy - A Light-Weight PHP Framework For Beginner
  *
@@ -9,10 +7,16 @@ define('APPLICATION_TIME_START', microtime(true));
  * @author   Dinh Phong <dinhphong.developer@gmail.com>
  */
 
-// Include bootstrap file
+define('APPLICATION_TIME_START', microtime(true));
+
 require_once "app/bootstrap.php";
 
-$app = new App;
+$app = new Rainy\App();
+
+$app->setDefaultController('home');
+$app->setDefaultMethod('index');
+
+$app->run();
 
 define('APPLICATION_TIME_END', microtime(true));
 define('APPLICATION_RUN_TIME', APPLICATION_TIME_END - APPLICATION_TIME_START);

@@ -28,4 +28,10 @@ define('CORE_PATH', ROOT_PATH . 'core' . DS);
  * Root path
  * /public_html/rainyframework/public
  */
-define('PUBLIC_PATH', ROOT_PATH . 'public' . DS);
+define('ASSETS_PATH', ROOT_PATH . 'assets' . DS);
+
+/**
+ * File Extension
+ *
+ */
+define('EXT', '.php');
