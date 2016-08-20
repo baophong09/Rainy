@@ -10,6 +10,8 @@
 
 namespace Rainy;
 
+use Rainy\Route as Route;
+
 class App
 {
 	/**
@@ -31,7 +33,7 @@ class App
 	protected $params;
 
 	/**
-	 * Url Request 
+	 * Url Request
 	 * @var String
 	 */
 	protected $urlRequest;
@@ -68,8 +70,15 @@ class App
 		call_user_method($method, $controller, $params);
 	}
 
+	/**
+	 * Run a application
+	 *
+	 * @return void
+	 */
 	public function run()
 	{
+		var_dump(Route::getAllRoutes());
+
 		$this->parseUrl();
 
 		$urlRequest = $this->urlRequest;
@@ -82,6 +91,7 @@ class App
 		}
 
 		if(isset($urlRequest[0])) {
+
 			if(file_exists('app/controller/'.$urlRequest[0] . EXT)) {
 				require_once('app/controller/'.$urlRequest[0] . EXT);
 
@@ -108,10 +118,24 @@ class App
 		$this->makeRequest($this->controller, $this->method, $this->params);
 	}
 
+	/**
+	 * Set Default Controller
+	 *
+	 * @param String $name
+	 *
+	 * @return void
+	 */
 	public function setDefaultController($name) {
 		$this->controller = $name;
 	}
 
+	/**
+	 * Set Default Method
+	 *
+	 * @param String $method
+	 *
+	 * @return void
+	 */
 	public function setDefaultMethod($method) {
 		$this->method = $method;
 	}
