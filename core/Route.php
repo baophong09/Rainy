@@ -15,10 +15,13 @@ class Route
 {
 	protected static $listRoute = [];
 
-	public static function set($urlRequest, $callback)
+	public static function rewrite($urlRequest, $callback)
 	{
 		$route = array();
-		$route['urlRequest'] = $urlRequest;
+
+		$urlRequest = filter_var(trim($urlRequest, '/'), FILTER_SANITIZE_URL);
+
+		$route['regex'] = self::buildUrl($urlRequest);
 
 		if(is_string($callback)) {
 			$callback = explode('@',$callback);
@@ -31,7 +34,7 @@ class Route
 			$route['callback'] = $callback;
 		}
 
-		return array_push(self::$listRoute, $route);
+		return self::$listRoute[$urlRequest] = $route;
 	}
 
 	public static function show()
@@ -44,5 +47,26 @@ class Route
 	public static function getAllRoutes()
 	{
 		return self::$listRoute;
+	}
+
+	public static function buildUrl($urlRequest)
+	{
+
+		$urlExplode = explode('/', $urlRequest);
+		$regex = '';
+		$params = array();
+
+		foreach($urlExplode as $url) {
+
+			if(strpos($url, "{") === 0 && substr($url, -1) == "}") {
+				$regex .= "([^\/]*?)\/";
+				continue;
+			}
+
+			$regex .= $url."\/";
+		}
+
+		return $regex = '/^' . trim($regex, '\/') . '$/';
+
 	}
 }

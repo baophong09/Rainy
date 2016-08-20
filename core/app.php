@@ -11,6 +11,7 @@
 namespace Rainy;
 
 use Rainy\Route as Route;
+use \Exception as Exception;
 
 class App
 {
@@ -34,9 +35,21 @@ class App
 
 	/**
 	 * Url Request
-	 * @var String
+	 * @var Array
 	 */
 	protected $urlRequest;
+
+	/**
+	 * Request
+	 * @var String
+	 */
+	protected $request;
+
+	/**
+	 * Url Request
+	 * @var String
+	 */
+	protected $routes;
 
 	/**
 	 * Directory of controller
@@ -77,8 +90,6 @@ class App
 	 */
 	public function run()
 	{
-		var_dump(Route::getAllRoutes());
-
 		$this->parseUrl();
 
 		$urlRequest = $this->urlRequest;
@@ -88,6 +99,47 @@ class App
 
 			$this->controller = "App\\Controller\\".$this->controller;
 			$this->controller = new $this->controller;
+		}
+
+		$routes = Route::getAllRoutes();
+
+		$isRewrite = $isCallback = $isController = false;
+
+		foreach($routes as $k => $route) {
+			if(preg_match($route['regex'], $this->request, $matches)) {
+				unset($matches[0]);
+				$isRewrite = true;
+
+				if(isset($route["callback"])) {
+					$isCallback = true;
+				}
+
+				if(isset($route['controller'])) {
+					$isController = true;
+				}
+
+				break;
+			}
+		}
+
+		if($isRewrite) {
+
+			if($isCallback) {
+				return call_user_func_array($routes[$k]["callback"], $matches);
+			}
+
+			if($isController) {
+
+				if(file_exists('app/controller/'.$routes[$k]["controller"] . EXT)) {
+					require_once('app/controller/'.$routes[$k]["controller"] . EXT);
+
+					$this->controller = "App\\Controller\\".$routes[$k]["controller"];
+					$this->controller = new $this->controller;
+				}
+
+				return $this->makeRequest($this->controller,$routes[$k]["method"],$matches);
+			}
+
 		}
 
 		if(isset($urlRequest[0])) {
@@ -115,7 +167,15 @@ class App
 			}
 		}
 
-		$this->makeRequest($this->controller, $this->method, $this->params);
+		// var_dump($this->controller);
+		// var_dump($this->method);
+		// die;
+
+		if(!$this->controller || !$this->method) {
+			throw new Exception("Controller, method or route not exist");
+		}
+
+		return $this->makeRequest($this->controller, $this->method, $this->params);
 	}
 
 	/**
@@ -142,12 +202,15 @@ class App
 
 	/**
 	 * Parse + filter url to array
-	 * @return Array
+	 * @return void
 	 */
 	public function parseUrl()
 	{
 		if(isset($_GET['request']))	{
-			return $this->urlRequest = explode('/',filter_var(trim($_GET['request'], '/'), FILTER_SANITIZE_URL));
+			$this->request = filter_var(trim($_GET['request'], '/'), FILTER_SANITIZE_URL);
+			$this->urlRequest = explode('/',$this->request);
+
+			return;
 		}
 	}
 }

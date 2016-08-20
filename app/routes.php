@@ -11,12 +11,11 @@
 
 class_alias('Rainy\Route','Route');
 
-Route::set('user/login', function(){
-	echo "user login";
+Route::rewrite('username/{username}', function($username){
+	echo "Hello, " . $username;
 });
 
-Route::set('user/signup', function(){
-	echo "user signup";
-});
+Route::rewrite('dinh-phong', "home@test");
 
-Route::show();
+
+// Route::show();
