@@ -11,7 +11,7 @@ define('APPLICATION_TIME_START', microtime(true));
 
 require_once "app/bootstrap.php";
 
-$app = new App;
+$app = new Rainy\App();
 
 $app->setDefaultController('home');
 $app->setDefaultMethod('index');

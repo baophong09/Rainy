@@ -8,6 +8,8 @@
  *
  */
 
+namespace Rainy;
+
 class App
 {
 	/**
