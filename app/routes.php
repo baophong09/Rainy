@@ -11,7 +11,7 @@
 
 class_alias('Rainy\Route','Route');
 
-Route::rewrite('username/{username}', function($username){
+Route::rewrite('user/{username}', function($username){
 	echo "Hello, " . $username;
 });
 

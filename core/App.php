@@ -99,6 +99,35 @@ class App
 
             $this->controller = "App\\Controller\\".$this->controller;
             $this->controller = new $this->controller;
+
+            return $this->makeRequest($this->controller, $this->method, $this->params);
+        }
+
+        if(isset($urlRequest[0])) {
+
+            if(file_exists('app/controller/'.$urlRequest[0] . EXT)) {
+                require_once('app/controller/'.$urlRequest[0] . EXT);
+
+                $this->controller = "App\\Controller\\".$urlRequest[0];
+                $this->controller = new $this->controller;
+            }
+
+            if(is_dir('app/controller/'.$urlRequest[0]) && !$this->controller) {
+
+            }
+
+            unset($urlRequest[0]);
+
+            $urlRequest[1] = isset($urlRequest[1]) ? $urlRequest[1] : 'index';
+
+            if(method_exists($this->controller, $urlRequest[1])) {
+                $this->method = $urlRequest[1];
+                unset($urlRequest[1]);
+
+                $this->params = $urlRequest;
+
+                return $this->makeRequest($this->controller, $this->method, $this->params);
+            }
         }
 
         $routes = Route::getAllRoutes();
@@ -142,40 +171,11 @@ class App
 
         }
 
-        if(isset($urlRequest[0])) {
+        throw new \Exception("Controller, method or route not exist");
 
-            if(file_exists('app/controller/'.$urlRequest[0] . EXT)) {
-                require_once('app/controller/'.$urlRequest[0] . EXT);
+        return true;
 
-                $this->controller = "App\\Controller\\".$urlRequest[0];
-                $this->controller = new $this->controller;
-            }
-
-            if(is_dir('app/controller/'.$urlRequest[0]) && !$this->controller) {
-
-            }
-
-            unset($urlRequest[0]);
-        }
-
-        if(isset($urlRequest[1])) {
-            if(method_exists($this->controller, $urlRequest[1])) {
-                $this->method = $urlRequest[1];
-                unset($urlRequest[1]);
-
-                $this->params = $urlRequest;
-            }
-        }
-
-        // var_dump($this->controller);
-        // var_dump($this->method);
-        // die;
-
-        if(!$this->controller || !$this->method) {
-            throw new Exception("Controller, method or route not exist");
-        }
-
-        return $this->makeRequest($this->controller, $this->method, $this->params);
+        //return $this->makeRequest($this->controller, $this->method, $this->params);
     }
 
     /**

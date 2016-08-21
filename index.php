@@ -16,7 +16,12 @@ $app = new Rainy\App();
 $app->setDefaultController('home');
 $app->setDefaultMethod('index');
 
-$app->run();
+try {
+	$app->run();
+} catch (Exception $e) {
+	echo 'Caught exception: '. $e->getMessage() . "\n";
+}
+
 
 define('APPLICATION_TIME_END', microtime(true));
 define('APPLICATION_RUN_TIME', APPLICATION_TIME_END - APPLICATION_TIME_START);

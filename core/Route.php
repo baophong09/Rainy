@@ -67,6 +67,6 @@ class Route
         }
 
         return $regex = '/^' . trim($regex, '\/') . '$/';
-
     }
+
 }
