@@ -7,7 +7,7 @@ use \Exception as Exception;
 
 class Database
 {
-    protected $pdo;
+    public $pdo;
 
     public function __construct($pdo)
     {

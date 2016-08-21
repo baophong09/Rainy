@@ -9,7 +9,7 @@ class Connector
 {
     protected $options = [];
 
-    public function createConnection($config, $options)
+    public function createConnection($config, $options = [])
     {
         if(isset($config["dsn"]) && isset($config["username"]) && isset($config["password"])) {
             return $this->PDOConnect($config["dsn"], $config["username"], $config["password"], $options);

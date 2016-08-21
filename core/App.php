@@ -63,6 +63,31 @@ class App
      */
     public function __construct()
     {
+        $driver = new Database\Driver();
+
+        $options = [
+            "driver" => "mysql",
+            "host"  =>  "localhost",
+            "username" => "root",
+            "password" => "",
+            "database" => "rainy"
+        ];
+
+        try {
+            $connection = $driver->createConnection($options);
+        } catch (Exception $e) {
+            echo 'Caught exception: '. $e->getMessage() . "\n";
+        }
+
+        $stmt = $connection->pdo->prepare("SELECT * FROM users");
+        $stmt->execute();
+
+        $result = $stmt->setFetchMode(\PDO::FETCH_ASSOC);
+
+        echo "<pre>";
+        var_dump($stmt->fetchAll());
+        echo "</pre>";
+        die;
 
     }
 

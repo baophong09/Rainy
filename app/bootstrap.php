@@ -5,11 +5,12 @@
  * This file boot up firstly when application run
  */
 
+// Define some variable
 require_once "core/Define.php";
-require_once "core/Route.php";
-require_once "core/Controller.php";
-require_once "core/Model.php";
 
-require_once "core/App.php";
+// Autoload class
+require_once "vendor/autoload.php";
 
+// Rewrite routes
 require_once "app/routes.php";
+

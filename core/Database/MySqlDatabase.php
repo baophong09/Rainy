@@ -1,6 +1,6 @@
 <?php
 
-namespace \Rainy\Database;
+namespace Rainy\Database;
 
 class MySqlDatabase extends Database
 {

@@ -11,7 +11,7 @@ class Driver
     public function connector($config)
     {
         if(!isset($config['driver'])) {
-            throw new Exception('Driver is missing')
+            throw new Exception('Driver is missing');
         }
 
         switch ($config['driver']) {
@@ -22,7 +22,11 @@ class Driver
 
     public function createConnection($config)
     {
-        $pdo = $this->connector($config);
+        try {
+            $pdo = $this->connector($config)->connect($config);
+        } catch (Exception $e) {
+            echo 'Caught exception: '. $e->getMessage() . "\n";
+        }
 
         if($pdo) {
             switch($config['driver']) {

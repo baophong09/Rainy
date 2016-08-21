@@ -2,7 +2,10 @@
 
 namespace Rainy\Database\Connectors;
 
-inteface ConnectorInterface
+interface ConnectorInterface
 {
+    /**
+     * Every connector need connect
+     */
     public function connect($config);
 }

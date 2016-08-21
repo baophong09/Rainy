@@ -19,4 +19,4 @@ Route::rewrite('hello/{firstname}/{lastname}', "user@hello");
 
 Route::rewrite('dinh-phong', "home@test");
 
-// Route::show();
+//Route::show();
