@@ -6,7 +6,7 @@
  * @package  RainyFramework
  * @author   Dinh Phong <dinhphong.developer@gmail.com>
  *
- * Register Route
+ * Rewrite Route
  */
 
 class_alias('Rainy\Route','Route');
@@ -18,6 +18,5 @@ Route::rewrite('user/{username}', function($username){
 Route::rewrite('hello/{firstname}/{lastname}', "user@hello");
 
 Route::rewrite('dinh-phong', "home@test");
-
 
 // Route::show();

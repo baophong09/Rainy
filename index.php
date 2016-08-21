@@ -26,4 +26,4 @@ try {
 define('APPLICATION_TIME_END', microtime(true));
 define('APPLICATION_RUN_TIME', APPLICATION_TIME_END - APPLICATION_TIME_START);
 
-die("<br/>Execute time: ".(APPLICATION_RUN_TIME * 1000)." ms");
+echo ("<div style='position: absolute; bottom:0; left: 0; padding: 30px; background-color: #eee'>Execute time: ".(APPLICATION_RUN_TIME * 1000)." ms</div>");

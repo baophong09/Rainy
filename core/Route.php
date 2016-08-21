@@ -21,6 +21,8 @@ class Route
 
         $urlRequest = filter_var(trim($urlRequest, '/'), FILTER_SANITIZE_URL);
 
+        $urlRequest = ($urlRequest) ? $urlRequest : '/';
+
         $route['regex'] = self::buildUrl($urlRequest);
 
         if(is_string($callback)) {
@@ -51,6 +53,9 @@ class Route
 
     public static function buildUrl($urlRequest)
     {
+        if($urlRequest == '/') {
+            return '/^$/';
+        }
 
         $urlExplode = explode('/', $urlRequest);
         $regex = '';
@@ -63,10 +68,15 @@ class Route
                 continue;
             }
 
+            if($url == '/') {
+                $regex .= "";
+                continue;
+            }
+
             $regex .= $url."\/";
         }
 
-        return $regex = '/^' . trim($regex, '\/') . '$/';
+        return '/^' . rtrim($regex, '\/') . '$/';
     }
 
 }

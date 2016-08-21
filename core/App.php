@@ -94,15 +94,6 @@ class App
 
         $urlRequest = $this->urlRequest;
 
-        if(!$urlRequest) {
-            require_once('app/controller/'.$this->controller.EXT);
-
-            $this->controller = "App\\Controller\\".$this->controller;
-            $this->controller = new $this->controller;
-
-            return $this->makeRequest($this->controller, $this->method, $this->params);
-        }
-
         if(isset($urlRequest[0])) {
 
             if(file_exists('app/controller/'.$urlRequest[0] . EXT)) {
@@ -169,6 +160,15 @@ class App
                 return $this->makeRequest($this->controller,$routes[$k]["method"],$matches);
             }
 
+        }
+
+        if(!$urlRequest) {
+            require_once('app/controller/'.$this->controller.EXT);
+
+            $this->controller = "App\\Controller\\".$this->controller;
+            $this->controller = new $this->controller;
+
+            return $this->makeRequest($this->controller, $this->method, $this->params);
         }
 
         throw new \Exception("Controller, method or route not exist");

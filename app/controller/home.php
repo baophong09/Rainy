@@ -6,7 +6,7 @@ class Home extends \Rainy\Controller
 {
     public function index()
     {
-        echo "This is home/index";
+        return $this->view('home', []);
     }
 
     public function test()
