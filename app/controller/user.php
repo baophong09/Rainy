@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-class User
+class User extends \Rainy\Controller
 {
 	public function index()
 	{
@@ -12,5 +12,10 @@ class User
 	public function test()
 	{
 		echo "User/test";
+	}
+
+	public function hello($firstname, $lastname)
+	{
+		echo "Hello " . $firstname . " " . $lastname;
 	}
 }

@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-class Home
+class Home extends \Rainy\Controller
 {
     public function index()
     {

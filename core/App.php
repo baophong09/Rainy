@@ -31,7 +31,7 @@ class App
      * Parameters
      * @var Array
      */
-    protected $params;
+    protected $params = [];
 
     /**
      * Url Request
@@ -80,7 +80,7 @@ class App
             return;
         }
 
-        call_user_method($method, $controller, $params);
+        call_user_func_array([$controller, $method], $params);
     }
 
     /**
