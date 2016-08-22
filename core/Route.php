@@ -13,8 +13,21 @@ namespace Rainy;
 
 class Route
 {
+    /**
+     * Array all route rewrite
+     *
+     * @var Array
+     */
     protected static $listRoute = [];
 
+    /**
+     * Rewrite url
+     *
+     * @param string $urlRequest
+     * @param function || string $callback
+     *
+     * @return string
+     */
     public static function rewrite($urlRequest, $callback)
     {
         $route = array();
@@ -39,6 +52,11 @@ class Route
         return self::$listRoute[$urlRequest] = $route;
     }
 
+    /**
+     * Show all route for debug
+     *
+     * @return void
+     */
     public static function show()
     {
         echo "<pre>";
@@ -46,11 +64,23 @@ class Route
         echo "</pre>";
     }
 
+    /**
+     * get all route for debug
+     *
+     * @return array
+     */
     public static function getAllRoutes()
     {
         return self::$listRoute;
     }
 
+    /**
+     * Build Url regex
+     *
+     * @param String $urlRequest
+     *
+     * @return String
+     */
     public static function buildUrl($urlRequest)
     {
         if($urlRequest == '/') {

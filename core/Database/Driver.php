@@ -6,8 +6,19 @@ use \PDO as PDO;
 use \Exception as Exception;
 use \Rainy\Database\Connectors\MySqlConnector as MySqlConnector;
 
+/**
+ * Class Driver choose driver to use (MySql, LiteSQL etc..)
+ */
 class Driver
 {
+    /**
+     * Get Class Connector
+     *
+     * @param Array $config
+     *
+     * @return Object MySqlConnector
+     * @return Exception Driver is missing
+     */
     public function connector($config)
     {
         if(!isset($config['driver'])) {
@@ -20,6 +31,14 @@ class Driver
         }
     }
 
+    /**
+     * Connection connector and Database
+     *
+     * @param Array $config
+     *
+     * @return Object MySqlDatabase
+     * @return Exception Can't create PDO
+     */
     public function createConnection($config)
     {
         try {

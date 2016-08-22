@@ -12,12 +12,23 @@ namespace Rainy;
 
 class Controller
 {
+    /**
+     * Model class
+     */
     protected $model;
 
-    public function getModel($model)
+    /**
+     * Trying to get Model class
+     *
+     * @param string $model
+     *
+     * @return \Rainy\Model Object
+     * @return Exception Model not exists
+     */
+    protected function getModel($model)
     {
         if(file_exists("app/model/" . $model . EXT)) {
-            // require_once("app/model/" . $model . EXT);
+
             $model = "app\\model\\".$model;
 
             return new $model;
@@ -27,6 +38,13 @@ class Controller
         }
     }
 
+    /**
+     * Public call model on controller
+     * @param String $model
+     *
+     * @return Object Model
+     * @return echo Exception
+     */
     public function model($model)
     {
         try {
@@ -37,17 +55,35 @@ class Controller
         }
     }
 
-    public function getView($view, $data = [])
+    /**
+     * Trying to require view file
+     *
+     * @param string $view
+     * @param array $data
+     *
+     * @return require view file
+     * @return Exception view not exists
+     */
+    protected function getView($view, $data = [])
     {
         if(file_exists("app/view/" . $view . EXT)) {
 
             return require("app/view/" . $view . EXT);
 
         } else {
-            throw new \Exception("The model: {$view} not exists");
+            throw new \Exception("The view: {$view} not exists");
         }
     }
 
+    /**
+     * Public call view on controller
+     *
+     * @param string $view
+     * @param array $data
+     *
+     * @return require view file
+     * @return Exception view not exists
+     */
     public function view($view, $data = [])
     {
         try {

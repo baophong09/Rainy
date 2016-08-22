@@ -97,7 +97,7 @@ class App
      * @param string $method
      * @param array $params
      *
-     * @return void
+     * @return call Controller->method
      */
     public function makeRequest($controller, $method, $params)
     {
@@ -111,7 +111,8 @@ class App
     /**
      * Run a application
      *
-     * @return void
+     * @return $this->makeRequest
+     * @return Exception
      */
     public function run()
     {

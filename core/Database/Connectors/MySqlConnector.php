@@ -5,8 +5,19 @@ namespace Rainy\Database\Connectors;
 use \Rainy\Database\Connectors\ConnectorInterface as ConnectorInterface;
 use \Rainy\Database\Connectors\Connector as Connector;
 
+/**
+ * MySqlConnector is connector adapter for MySQL Database
+ */
+
 class MySqlConnector extends Connector implements ConnectorInterface
 {
+    /**
+     * Connect to database
+     *
+     * @param Array $config
+     *
+     * @return \PDO Object
+     */
     public function connect($config) {
         $config["dsn"] = $this->getDsn($config);
 
@@ -29,6 +40,13 @@ class MySqlConnector extends Connector implements ConnectorInterface
         return $connection;
     }
 
+    /**
+     * Get DSN for MySQL
+     *
+     * @param Array $config
+     *
+     * @return String
+     */
     public function getDsn($config) {
         return isset($config['port'])
                         ? "mysql:host=".$config['host'].";port=".$config['port'].";dbname=".$config["database"] 
