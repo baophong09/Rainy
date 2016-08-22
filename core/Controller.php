@@ -17,7 +17,7 @@ class Controller
     public function getModel($model)
     {
         if(file_exists("app/model/" . $model . EXT)) {
-            require_once("app/model/" . $model . EXT);
+            // require_once("app/model/" . $model . EXT);
             $model = "app\\model\\".$model;
 
             return new $model;

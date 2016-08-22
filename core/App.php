@@ -63,7 +63,7 @@ class App
      */
     public function __construct()
     {
-        $driver = new Database\Driver();
+        /*$driver = new Database\Driver();
 
         $options = [
             "driver" => "mysql",
@@ -87,7 +87,7 @@ class App
         echo "<pre>";
         var_dump($stmt->fetchAll());
         echo "</pre>";
-        die;
+        die;*/
 
     }
 
@@ -122,7 +122,7 @@ class App
         if(isset($urlRequest[0])) {
 
             if(file_exists('app/controller/'.$urlRequest[0] . EXT)) {
-                require_once('app/controller/'.$urlRequest[0] . EXT);
+                // require_once('app/controller/'.$urlRequest[0] . EXT);
 
                 $this->controller = "App\\Controller\\".$urlRequest[0];
                 $this->controller = new $this->controller;
@@ -176,7 +176,7 @@ class App
             if($isController) {
 
                 if(file_exists('app/controller/'.$routes[$k]["controller"] . EXT)) {
-                    require_once('app/controller/'.$routes[$k]["controller"] . EXT);
+                    // require_once('app/controller/'.$routes[$k]["controller"] . EXT);
 
                     $this->controller = "App\\Controller\\".$routes[$k]["controller"];
                     $this->controller = new $this->controller;
@@ -188,7 +188,7 @@ class App
         }
 
         if(!$urlRequest) {
-            require_once('app/controller/'.$this->controller.EXT);
+            // require_once('app/controller/'.$this->controller.EXT);
 
             $this->controller = "App\\Controller\\".$this->controller;
             $this->controller = new $this->controller;
