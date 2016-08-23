@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "baophong09/rainyfw": "dev-master"
+        "baophong09/rainy": "dev-master"
     },
     "autoload": {
         "psr-4": {
