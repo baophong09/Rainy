@@ -15,8 +15,8 @@ Route::rewrite('user/{username}', function($username){
 	echo "Hello, " . $username;
 });
 
-Route::rewrite('hello/{firstname}/{lastname}', "user@hello");
+Route::rewrite('hello/{firstname}/{lastname}', "User@hello");
 
-Route::rewrite('dinh-phong', "home@test");
+Route::rewrite('dinh-phong', "Home@test");
 
 //Route::show();

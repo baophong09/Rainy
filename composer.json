@@ -11,8 +11,8 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "Rainy\\": "core/",
-            "App\\": "app/"
+            "App\\": "app/",
+            "Rainy\\": "core/"
         }
     }
 }

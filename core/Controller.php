@@ -66,9 +66,9 @@ class Controller
      */
     protected function getView($view, $data = [])
     {
-        if(file_exists("app/view/" . $view . EXT)) {
+        if(file_exists("app/View/" . $view . EXT)) {
 
-            return require("app/view/" . $view . EXT);
+            return require("app/View/" . $view . EXT);
 
         } else {
             throw new \Exception("The view: {$view} not exists");
