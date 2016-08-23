@@ -8,11 +8,12 @@
             "email": "dinhphong.developer@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "baophong09/rainyfw": "dev-master"
+    },
     "autoload": {
         "psr-4": {
-            "App\\": "app/",
-            "Rainy\\": "core/"
+            "App\\": "app/"
         }
     }
 }
