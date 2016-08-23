@@ -1,0 +1,65 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "e297cb33c134d5673b8a72b94cc76032",
+    "content-hash": "6c0c6534ec9b3cdd960bf99ffbdc0fc2",
+    "packages": [
+        {
+            "name": "baophong09/rainyfw",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/baophong09/rainyfw.git",
+                "reference": "9c94d8d5a8bc88ddbf86c28dbb178c550d356394"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/baophong09/rainyfw/zipball/9c94d8d5a8bc88ddbf86c28dbb178c550d356394",
+                "reference": "9c94d8d5a8bc88ddbf86c28dbb178c550d356394",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/RainyFramework/Define.php"
+                ],
+                "psr-4": {
+                    "Rainy\\": "src/RainyFramework/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dinh Phong",
+                    "email": "dinhphong.developer@gmail.com"
+                }
+            ],
+            "description": "A Light Weight PHP Framework",
+            "time": "2016-08-23 07:50:21"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "baophong09/rainyfw": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

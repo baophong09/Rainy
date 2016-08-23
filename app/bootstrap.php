@@ -9,7 +9,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 'on');
 
 // Define some variable
-require_once "core/Define.php";
+// require_once "core/Define.php";
 
 // Autoload class
 require_once "vendor/autoload.php";
