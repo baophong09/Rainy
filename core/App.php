@@ -88,7 +88,6 @@ class App
         var_dump($stmt->fetchAll());
         echo "</pre>";
         die;*/
-
     }
 
     /**
@@ -101,6 +100,7 @@ class App
      */
     public function makeRequest($controller, $method, $params)
     {
+
         if(!isset($controller) || !isset($method)) {
             return;
         }
@@ -122,11 +122,13 @@ class App
 
         if(isset($urlRequest[0])) {
 
-            if(file_exists('app/controller/'.$urlRequest[0] . EXT)) {
-                // require_once('app/controller/'.$urlRequest[0] . EXT);
+            if(file_exists('app/Controller/'.ucfirst($urlRequest[0]) . EXT)) {
+                //require_once('app/controller/'.$urlRequest[0] . EXT);
 
-                $this->controller = "App\\Controller\\".$urlRequest[0];
+                $this->controller = "App\\Controller\\".ucfirst($urlRequest[0]);
+
                 $this->controller = new $this->controller;
+
             }
 
             if(is_dir('app/controller/'.$urlRequest[0]) && !$this->controller) {
@@ -146,6 +148,7 @@ class App
                 return $this->makeRequest($this->controller, $this->method, $this->params);
             }
         }
+
 
         $routes = Route::getAllRoutes();
 
@@ -168,6 +171,7 @@ class App
             }
         }
 
+
         if($isRewrite) {
 
             if($isCallback) {
@@ -176,10 +180,11 @@ class App
 
             if($isController) {
 
-                if(file_exists('app/controller/'.$routes[$k]["controller"] . EXT)) {
+                if(file_exists('app/Controller/'.ucfirst($routes[$k]["controller"]) . EXT)) {
                     // require_once('app/controller/'.$routes[$k]["controller"] . EXT);
 
-                    $this->controller = "App\\Controller\\".$routes[$k]["controller"];
+                    $this->controller = "App\\Controller\\".ucfirst($routes[$k]["controller"]);
+
                     $this->controller = new $this->controller;
                 }
 
@@ -188,10 +193,12 @@ class App
 
         }
 
-        if(!$urlRequest) {
-            // require_once('app/controller/'.$this->controller.EXT);
 
-            $this->controller = "App\\Controller\\".$this->controller;
+
+
+        if(!$urlRequest) {
+
+            $this->controller = "App\\Controller\\".ucfirst($this->controller);
             $this->controller = new $this->controller;
 
             return $this->makeRequest($this->controller, $this->method, $this->params);
@@ -201,7 +208,6 @@ class App
 
         return true;
 
-        //return $this->makeRequest($this->controller, $this->method, $this->params);
     }
 
     /**

@@ -54,6 +54,6 @@ class Driver
             }
         }
 
-        throw new Exception("Pdo create fail");
+        throw new Exception("PDO create fail");
     }
 }

@@ -5,6 +5,9 @@
  * This file boot up firstly when application run
  */
 
+error_reporting(E_ALL);
+ini_set('display_errors', 'on');
+
 // Define some variable
 require_once "core/Define.php";
 

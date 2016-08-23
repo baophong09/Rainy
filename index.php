@@ -7,6 +7,7 @@
  * @author   Dinh Phong <dinhphong.developer@gmail.com>
  */
 
+
 define('APPLICATION_TIME_START', microtime(true));
 
 require_once "app/bootstrap.php";
