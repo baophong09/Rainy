@@ -43,7 +43,7 @@ $options = [
 
 $db = new \Rainy\Database\DB($options);
 
-\Rainy\Helper::debug(\Rainy\Database\DB::table('users')->select("*")->get());
+\Rainy\Helper::debug(\Rainy\Database\DB::table('users')->select("*")->where('username','=','0 OR 1 = 1; DELETE FROM users;')->get());
 
 $users = $connection->query("INSERT INTO `users` (username,password) VALUES('anhpham', '123123')");
 
