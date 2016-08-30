@@ -17,22 +17,6 @@ $app = new Rainy\App();
 $app->setDefaultController('home');
 $app->setDefaultMethod('index');
 
-// $driver = new \Rainy\Database\Driver();
-
-// $options = [
-//     "driver" => "mysql",
-//     "host"  =>  "localhost",
-//     "username" => "root",
-//     "password" => "secret",
-//     "database" => "rainy"
-// ];
-
-// try {
-//     $connection = $driver->init($options);
-// } catch (Exception $e) {
-//     echo 'Caught exception: '. $e->getMessage() . "\n";
-// }
-
 $options = [
     "driver" => "mysql",
     "host"  =>  "localhost",
@@ -43,15 +27,14 @@ $options = [
 
 $db = new \Rainy\Database\DB($options);
 
-\Rainy\Helper::debug(\Rainy\Database\DB::table('users')->select("*")->where('username','=','0 OR 1 = 1; DELETE FROM users;')->get());
+//\Rainy\Helper::debug(\Rainy\Database\DB::table('users')->select("*")->where('username','=','0 OR 1 = 1; DELETE FROM users;')->get());
 
-$users = $connection->query("INSERT INTO `users` (username,password) VALUES('anhpham', '123123')");
+// $users = $connection->query("INSERT INTO `users` (username,password) VALUES('anhpham', '123123')");
 
 // echo "<pre>";
 // var_dump($users);
 // echo "</pre>";
 
-die;
 
 try {
 	$app->run();
