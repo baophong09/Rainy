@@ -27,14 +27,15 @@ $options = [
 
 $db = new \Rainy\Database\DB($options);
 
-//\Rainy\Helper::debug(\Rainy\Database\DB::table('users')->select("*")->where('username','=','0 OR 1 = 1; DELETE FROM users;')->get());
+// \Rainy\Helper::debug(\Rainy\Database\DB::table('users')->select("*")->where('username','=','0 OR 1 = 1; DELETE FROM users;')->get());
 
-// $users = $connection->query("INSERT INTO `users` (username,password) VALUES('anhpham', '123123')");
+$posts = $db::table('posts')->select('posts.*, users.username as username, users.password as password')->leftJoin('users', 'users.id', '=', 'posts.id')->get();
 
-// echo "<pre>";
-// var_dump($users);
-// echo "</pre>";
+echo "<pre>";
+var_dump($posts);
+echo "</pre>";
 
+die;
 
 try {
 	$app->run();
