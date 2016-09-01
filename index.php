@@ -7,7 +7,6 @@
  * @author   Dinh Phong <dinhphong.developer@gmail.com>
  */
 
-
 define('APPLICATION_TIME_START', microtime(true));
 
 require_once "app/bootstrap.php";
@@ -27,9 +26,7 @@ $options = [
 
 $db = new \Rainy\Database\DB($options);
 
-// \Rainy\Helper::debug(\Rainy\Database\DB::table('users')->select("*")->where('username','=','0 OR 1 = 1; DELETE FROM users;')->get());
-
-$posts = $db::table('posts')->select('posts.*, users.username as username, users.password as password')->leftJoin('users', 'users.id', '=', 'posts.id')->get();
+$posts = $db::table('posts')->select('posts.*, users.username as username, users.password as password')->leftJoin('users', 'users.id', '=', 'posts.user_id')->get();
 
 echo "<pre>";
 var_dump($posts);
