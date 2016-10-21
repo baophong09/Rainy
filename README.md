@@ -12,3 +12,6 @@ git clone https://github.com/baophong09/RainyFramework.git
 
 composer install
 ```
+
+### Core repository:
+https://github.com/baophong09/Rainy-Core
